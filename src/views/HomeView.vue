@@ -1,18 +1,25 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <div style="height: 1000px"></div>
+  <p v-pin="position">페이지 고정 영역</p>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
-
 export default {
   name: 'HomeView',
-  components: {
-    HelloWorld,
+  directives: {
+    pin: {
+      mounted(el, binding) {
+        console.log(11);
+        el.style.position = 'fixed';
+        el.style.top = binding.value.top + 'px';
+        el.style.left = binding.value.left + 'px';
+      },
+    },
+  },
+  data() {
+    return {
+      position: { top: 50, left: 100 },
+    };
   },
 };
 </script>

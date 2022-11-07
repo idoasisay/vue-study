@@ -1,6 +1,7 @@
 <template>
   <div>
     <page-title title="danger" />
+    <input type="text" name="" id="" v-focus />
   </div>
 </template>
 <script>

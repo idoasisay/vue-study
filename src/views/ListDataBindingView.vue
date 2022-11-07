@@ -28,9 +28,11 @@
   </div>
 </template>
 <script>
+import mixins from '@/mixins';
 export default {
   name: 'ListDataBindingView',
   components: {},
+  mixins: [mixins],
   data() {
     return {
       firstName: 'yujeong',
@@ -46,7 +48,9 @@ export default {
     this.getList();
   },
   beforeMount() {},
-  mounted() {},
+  async mounted() {
+    // this.productList = await this.$api()
+  },
   beforeUpdate() {},
   updated() {},
   beforeUnmount() {},
