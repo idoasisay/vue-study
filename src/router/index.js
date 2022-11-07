@@ -40,6 +40,28 @@ const routes = [
         /* webpackChunkName: "NestedComponentView", webpackPrefetch: true */ '../views/NestedComponentView.vue'
       ),
   },
+  {
+    path: '/parent',
+    name: 'ParentCompView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "ParentCompView", webpackPrefetch: true */ '../views/ParentCompView.vue'
+      ),
+  },
+  {
+    path: '/slot',
+    name: 'SlotUseModalLayout',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "SlotUseModalLayout", webpackPrefetch: true */ '../views/SlotUseModalLayout.vue'
+      ),
+  },
 ];
 
 const router = createRouter({

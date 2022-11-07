@@ -1,11 +1,16 @@
-<template><h2>컴포넌트 사용 예제 페이지</h2></template>
+<template>
+  <h2>{{ title }}</h2>
+</template>
 <script>
 export default {
   components: {},
-  data() {
-    return {
-      sampleData: '',
-    };
+  props: {
+    title: {
+      type: String,
+      validator: function (value) {
+        return ['success', 'warning', 'danger'].indexOf(value) !== -1;
+      },
+    },
   },
   setup() {},
   beforeCreate() {},

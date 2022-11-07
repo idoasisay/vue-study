@@ -1,6 +1,6 @@
 <template>
   <div>
-    <page-title />
+    <page-title title="danger" />
   </div>
 </template>
 <script>
@@ -8,9 +8,7 @@ import PageTitle from '@/components/PageTitle.vue';
 export default {
   components: { PageTitle },
   data() {
-    return {
-      sampleData: '',
-    };
+    return {};
   },
   setup() {},
   beforeCreate() {},
