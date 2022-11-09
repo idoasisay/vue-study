@@ -9,7 +9,6 @@ export default {
   directives: {
     pin: {
       mounted(el, binding) {
-        console.log(11);
         el.style.position = 'fixed';
         el.style.top = binding.value.top + 'px';
         el.style.left = binding.value.left + 'px';
