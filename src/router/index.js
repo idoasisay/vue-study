@@ -62,6 +62,17 @@ const routes = [
         /* webpackChunkName: "SlotUseModalLayout", webpackPrefetch: true */ '../views/SlotUseModalLayout.vue'
       ),
   },
+  {
+    path: '/storeAccess',
+    name: 'StoreAccessView',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "StoreAccessView", webpackPrefetch: true */ '../views/StoreAccessView.vue'
+      ),
+  },
 ];
 
 const router = createRouter({
