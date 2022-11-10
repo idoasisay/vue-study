@@ -31,6 +31,16 @@
               >제품등록페이지</router-link
             >
           </li> -->
+          <li v-if="user.email === undefined">
+            <button class="btn btn-danger" type="button" @click="kakaoLogin">
+              로그인
+            </button>
+          </li>
+          <li v-else>
+            <button class="btn btn-danger" type="button" @click="kakaoLogout">
+              로그아웃
+            </button>
+          </li>
         </ul>
         <form class="d-flex">
           <input
@@ -49,6 +59,11 @@
 export default {
   name: 'header',
   components: {},
+  computed: {
+    user() {
+      return this.$store.state.user
+    }
+  },
   data() {
     return {
       sampleData: ''
@@ -63,6 +78,45 @@ export default {
   updated() {},
   beforeUnmount() {},
   unmounted() {},
-  methods: {}
+  methods: {
+    kakaoLogin() {
+      window.Kakao.Auth.login({
+        scpoe: 'profile, account_email, gender',
+        success: this.getProfile
+      })
+    },
+    getProfile(atuhObj) {
+      console.log(atuhObj)
+      window.Kakao.API.request({
+        url: '/v2/user/me',
+        success: (res) => {
+          const kakaoAccount = res.kakao_account
+          console.log(kakaoAccount)
+          this.login(kakaoAccount)
+          alert('로그인 성공!')
+        }
+      })
+    },
+    async login(kakaoAccount) {
+      await this.$api('/api/login', {
+        param: [
+          {
+            email: kakaoAccount.email,
+            nickname: kakaoAccount.profile.nickname
+          },
+          { nickname: kakaoAccount.profile.nickname }
+        ]
+      })
+      this.$store.commit('user', kakaoAccount)
+    },
+    kakaoLogout() {
+      window.Kakao.Auth.logout((response) => {
+        console.log(response)
+        this.$store.commit('user', {})
+        alert('로그아웃')
+        this.$router.push({ path: '/' })
+      })
+    }
+  }
 }
 </script>
